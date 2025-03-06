@@ -2,7 +2,9 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
+import model.Movie;
 import util.YamlReader;
 
 public class Main {
@@ -24,6 +26,8 @@ public class Main {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             System.out.println("Resposta da API: " + response.body());
+            List<Movie> movies = MovieConverter.parseMovie(response.body());
+            System.out.println(movies.size() + " filmes encontrados!");
         } catch (Exception e) {
             throw new RuntimeException("Erro ao obter os dados do API: " + e.getMessage());
         }
