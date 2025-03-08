@@ -30,3 +30,6 @@ bin/
 
 ### Properties ###
 /src/resources/
+
+### Html ##
+*.html
