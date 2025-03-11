@@ -29,8 +29,7 @@ bin/
 .DS_Store
 
 ### Properties ###
-/src/resources/*.yml
-/src/resources/*.yaml
+src/resources/properties.yml
 
 ### Html ##
 *.html
