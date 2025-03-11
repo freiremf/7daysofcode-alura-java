@@ -1,7 +1,7 @@
 package client;
 
 import model.Movie;
-import model.MovieConverter;
+import converter.MovieConverter;
 import util.YamlReader;
 
 import java.net.URI;
@@ -26,7 +26,7 @@ public class TmdbApiClient {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if(response.statusCode() != 200)
                 throw new RuntimeException(response.body());
-            return MovieConverter.parseMovie(response.body());
+            return new MovieConverter().parse(response.body());
         } catch (Exception e) {
             throw new RuntimeException("Erro ao obter os dados do API: " + e.getMessage());
         }

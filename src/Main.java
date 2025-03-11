@@ -15,7 +15,7 @@ public class Main {
 
         try (PrintWriter writer = new PrintWriter(new FileWriter("filmes.html"))) {
             HtmlGenerator generator = new HtmlGenerator(writer);
-            movies = movies.stream().sorted(Comparator.comparing(Movie::getVote_average).reversed()).toList();
+            movies = movies.stream().sorted(Comparator.comparing(Movie::vote_average).reversed()).toList();
             generator.generate(movies);
         } catch (IOException e) {
             throw new RuntimeException("Erro ao gerar HTML: " + e.getMessage());

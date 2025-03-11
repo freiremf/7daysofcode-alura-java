@@ -39,7 +39,7 @@ public class HtmlGenerator {
 
     private String getMovieCard(Movie movie) {
 
-        String year = Optional.ofNullable(movie.getRelease_date())
+        String year = Optional.ofNullable(movie.release_date())
                 .map(date -> String.valueOf(date.getYear()))
                 .orElse("Ano não disponível");
         return
@@ -51,6 +51,6 @@ public class HtmlGenerator {
                         <p class=\"card-text mt-2\">Nota: %s - Ano: %s</p>
                     </div>
                 </div>
-                """.formatted(movie.getTitle(), POSTER_BASE_URL + movie.getPoster_path(), movie.getTitle(), movie.getVote_average(), year);
+                """.formatted(movie.title(), POSTER_BASE_URL + movie.poster_path(), movie.title(), movie.vote_average(), year);
     }
 }
