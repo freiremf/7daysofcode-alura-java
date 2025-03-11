@@ -1,6 +1,8 @@
-import client.TmdbApiClient;
-import model.Movie;
-import view.HtmlGenerator;
+package main;
+
+import main.client.TmdbApiClient;
+import main.model.Movie;
+import main.view.HtmlGenerator;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +13,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         TmdbApiClient tmdbApiClient = new TmdbApiClient();
-        List<Movie> movies = tmdbApiClient.getMovies();
+        List<Movie> movies = tmdbApiClient.getBody();
 
         try (PrintWriter writer = new PrintWriter(new FileWriter("filmes.html"))) {
             HtmlGenerator generator = new HtmlGenerator(writer);
@@ -20,5 +22,7 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException("Erro ao gerar HTML: " + e.getMessage());
         }
+
+
     }
 }

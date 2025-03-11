@@ -1,6 +1,6 @@
-package view;
+package main.view;
 
-import model.Movie;
+import main.model.Movie;
 
 import java.io.PrintWriter;
 import java.util.List;

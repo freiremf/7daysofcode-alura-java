@@ -1,6 +1,6 @@
-package converter;
+package main.converter;
 
-import model.Movie;
+import main.model.Movie;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

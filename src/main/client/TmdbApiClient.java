@@ -1,8 +1,8 @@
-package client;
+package main.client;
 
-import model.Movie;
-import converter.MovieConverter;
-import util.YamlReader;
+import main.model.Movie;
+import main.converter.MovieConverter;
+import main.util.YamlReader;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -10,10 +10,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
-public class TmdbApiClient {
+public class TmdbApiClient implements ApiClient<Movie> {
     private static final String URL = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
 
-    public List<Movie> getMovies() {
+    @Override
+    public List<Movie> getBody() {
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -30,6 +31,11 @@ public class TmdbApiClient {
         } catch (Exception e) {
             throw new RuntimeException("Erro ao obter os dados do API: " + e.getMessage());
         }
+    }
+
+    @Override
+    public Class<Movie> getType() {
+        return Movie.class;
     }
 
     private String getApiKey() {

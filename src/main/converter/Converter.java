@@ -1,6 +1,6 @@
-package converter;
+package main.converter;
 
-import model.Content;
+import main.model.Content;
 
 import java.util.List;
 
