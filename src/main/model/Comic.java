@@ -3,7 +3,7 @@ package main.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record Movie (
+public record Comic (
     List<Long> genre_ids,
     String poster,
     LocalDateTime releaseDate,

@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.List;
 
 public class TmdbApiClient implements ApiClient<Movie> {
@@ -22,6 +23,7 @@ public class TmdbApiClient implements ApiClient<Movie> {
                 .header("Accept", "application/json")
                 .header("Authorization", "Bearer " + getApiKey())
                 .GET()
+                .timeout(Duration.ofSeconds(10))
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -29,13 +31,18 @@ public class TmdbApiClient implements ApiClient<Movie> {
                 throw new RuntimeException(response.body());
             return new MovieConverter().parse(response.body());
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao obter os dados do API: " + e.getMessage());
+            throw new RuntimeException("Erro ao obter os dados do API TMDB: " + e.getMessage());
         }
     }
 
     @Override
-    public Class<Movie> getType() {
+    public Class<Movie> getClassType() {
         return Movie.class;
+    }
+
+    @Override
+    public String getType() {
+        return "Movie";
     }
 
     private String getApiKey() {

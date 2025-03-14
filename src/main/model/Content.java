@@ -1,12 +1,13 @@
 package main.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface Content {
     List<Long> genre_ids();
-    String poster_path();
-    LocalDate release_date();
+    String poster();
+    LocalDateTime releaseDate();
     String title();
-    Double vote_average();
+    Double rating();
+    String contentType();
 }
